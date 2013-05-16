@@ -3,7 +3,7 @@
  */
 import java.util.*;
 
-public class LogestPalindrome{
+public class LongestPalindrome{
 
 	public static void main(String[] args) {
 		String input = "abeeddddeabe";
