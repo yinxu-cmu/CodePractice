@@ -10,7 +10,7 @@ public class Test {
 		}
 	}
 	
-	/* dynamic program */
+	/* dynamic programming */
 	public static int[] BiggestSum(int input[]) {
 		if(input.length == 0)
 			return null;
