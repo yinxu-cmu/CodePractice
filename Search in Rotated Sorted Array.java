@@ -2,6 +2,7 @@ public class Solution {
     public int search(int[] A, int target) {
         // Start typing your Java solution below
         // DO NOT write main() function
+        // write an example is really helpful, like: 9,1,2,3,4,5,6,7,8 */
         int end = A.length - 1;
         int start = 0;
         while (start <= end ){
