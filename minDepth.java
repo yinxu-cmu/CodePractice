@@ -7,6 +7,9 @@
  *     TreeNode(int x) { val = x; }
  * }
  * ******** TRICKY ONE ************
+ * 对于一个node，返回它的实际hight，如果一侧为null的话需要
+ * 只考虑非null那测的height。 这里不同于maxDepth，which 无需
+ * 考虑 null，直接返回的就是node的实际height。
  */
 public class Solution {
     public int minDepth(TreeNode root) {
