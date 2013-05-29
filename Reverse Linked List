@@ -1,0 +1,22 @@
+/* recursive */
+
+List rev2_aux(List x, List y) {
+    if (x==null) return y;
+    else  return 
+      rev2_aux(x.next(), new List(x.value(), y))
+}
+List reverse2(x) {  return rev2_aux(x, null); }
+
+/* iterative */
+public ListNode reverse(ListNode head){
+  ListNode cur = head;
+  ListNode pre = null;
+  ListNode tmp = null;
+  while(cur != null){
+    tmp = cur.next;
+    cur.next = pre;
+    pre = cur;
+    cur = tmp;
+  }
+  return pre;
+}
