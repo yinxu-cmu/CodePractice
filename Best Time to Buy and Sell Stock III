@@ -1,0 +1,39 @@
+public class Solution {
+    public int maxProfit(int[] prices) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        /* CLASSICAL !!!!!!!!! dynamic programming
+         * history[] stores the max history profit at each point
+         * future[] stores the max future profit at each point
+         * in each array, compare new possible profit with previous profit
+         * calc the max profit at the 2nd for loop.
+         */
+        int len = prices.length;
+        if( prices == null || len == 0){
+            return 0;
+        }
+        
+        int history[] = new int[len];
+        history[0] = 0;
+        int future[] = new int[len];
+        future[len-1] = 0;
+        int low = prices[0];
+        int high = prices[len-1];
+        int maxPro = 0;
+        
+        for(int i = 1;i < len;i++){
+            
+            low = Math.min(low, prices[i]);
+            history[i] = Math.max(prices[i] - low, history[i-1]);
+        }
+        
+        for(int i = len-2; i >= 0; i--){
+            high = Math.max(high, prices[i]);
+            future[i] = Math.max(future[i+1], high-prices[i]);
+            
+            maxPro = Math.max(maxPro, future[i]+history[i]);
+            
+        }
+        return maxPro;
+    }
+}
