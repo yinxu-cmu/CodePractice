@@ -1,0 +1,26 @@
+public class Solution {
+    public int maxProfit(int[] prices) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        /* dynamic programming */
+        if( prices == null || prices.length == 0){
+            return 0;
+        }
+        int maxPro = 0;
+        int min = prices[0];
+        int minTmp = prices[0];
+        for( int i = 0; i < prices.length; i++){
+            /* always compare with minTmp */
+            if( prices[i] < minTmp ){
+                minTmp = prices[i];
+                
+            }else{
+                if( prices[i] - minTmp > maxPro){
+                    maxPro = prices[i] - minTmp;
+                    min = minTmp;
+                }
+            }
+        }
+        return maxPro;
+    }
+}
