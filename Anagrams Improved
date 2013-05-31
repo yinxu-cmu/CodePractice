@@ -1,0 +1,36 @@
+public class Solution {
+    public ArrayList<String> anagrams(String[] strs) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        int len = strs.length;
+        ArrayList<String> result = new ArrayList<String>();
+        
+        HashMap<String,ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+        for(int i = 0; i < len; i++){
+            String sorted = sort(strs[i]);
+            if(!map.containsKey(sorted)){
+                /* add sorted string to hash map */
+                map.put(sorted,new ArrayList<String>());
+                
+            }
+            ArrayList<String> list = map.get(sorted);
+            list.add(strs[i]);
+        }
+        /* iterate a map using keySet()*/
+        for(String key : map.keySet()){
+            ArrayList<String> tmp = map.get(key);
+            if( tmp.size() > 1){
+                for(String word : tmp){
+                    result.add(word);
+                }
+            }
+        }
+        return result;
+    }
+    
+    public String sort(String input){
+        char[] array = input.toCharArray();
+        Arrays.sort(array);
+        return new String(array);
+    }
+}
