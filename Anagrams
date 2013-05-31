@@ -1,0 +1,50 @@
+public class Solution {
+    public ArrayList<String> anagrams(String[] strs) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        /****** DID NOT PASS LARGE FILE ********************/
+        int len = strs.length;
+        ArrayList<String> result = new ArrayList<String>();
+        if(len == 0){
+            return result;
+        }
+        boolean rec[] = new boolean[len];
+        HashSet<Character> hs = new HashSet<Character>();
+        boolean hasBase = false;
+        for(int i = 0; i < len; i++){
+            if(!rec[i]){
+                /* add each char to hash set */
+                hasBase = false;
+                for( int m = 0; m < strs[i].length(); m++){
+                    hs.add(strs[i].charAt(m));
+                }
+                for(int j = i+1; j < len; j++){
+                    if(!rec[j] && strs[i].length() == strs[j].length()){
+                        int m;
+                        for(m = 0; m < strs[j].length(); m++){
+                            if(hs.contains(strs[j].charAt(m))){
+                                continue;
+                            }else{
+                                break;
+                            }
+                        }
+                        /* if success, add strs[i] and strs[j] to list */
+                        if( m == strs[j].length()){
+                            if(hasBase){
+                                result.add(strs[j]);    
+                            }else{
+                                result.add(strs[i]);
+                                result.add(strs[j]);
+                                hasBase = true;
+                            }
+                            rec[j] = true;
+                        }
+                    }
+                }
+                hs.clear();
+            }
+            
+        }
+        return result;
+    }
+}
