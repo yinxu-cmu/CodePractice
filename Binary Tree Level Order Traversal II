@@ -1,0 +1,50 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public ArrayList<ArrayList<Integer>> levelOrderBottom(TreeNode root) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+        ArrayList<Integer> level = new ArrayList<Integer>();
+        Stack<ArrayList<Integer>> stack = new Stack<ArrayList<Integer>>();
+        q.add(root);
+        q.add(null);
+        TreeNode cur = null;
+        TreeNode pre = null;
+        while(!q.isEmpty()){
+            cur = q.poll();
+            if( cur != null){
+                level.add(cur.val);
+                /* 如果用ARRAYLIST 分层，就不要颠倒左右children的顺序 */
+                if(cur.left != null){
+                    q.add(cur.left);    
+                }
+                if(cur.right != null){
+                    q.add(cur.right);    
+                }
+                
+            }else{
+                if( pre == null ){
+                    break;
+                }else{
+                    stack.push(level);
+                    level = new ArrayList<Integer>();
+                    q.add(null);
+                }
+            }
+            pre = cur;
+        }
+        while(!stack.isEmpty()){
+            result.add(stack.pop());
+        }
+        return result;
+    }
+}
