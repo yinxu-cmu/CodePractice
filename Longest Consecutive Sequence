@@ -1,0 +1,26 @@
+public class Solution {
+    public int longestConsecutive(int[] num) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        Arrays.sort(num);
+        int maxlen = 0;
+        int tmplen = 1;
+        for( int i = 1; i < num.length; i++){
+            if(num[i] - num[i-1] == 1){
+                tmplen++;
+            }else if(num[i] == num[i-1]){
+                /***** DON'T FORGET THE EQUAL CONDITION!!****/
+                continue;
+            }else {
+                if(tmplen > maxlen){
+                    maxlen = tmplen;
+                }
+                tmplen = 1;
+            }
+        }
+        if( tmplen > maxlen){
+            maxlen = tmplen;
+        }
+        return maxlen;
+    }
+}
