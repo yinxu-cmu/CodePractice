@@ -1,0 +1,40 @@
+public class Solution {
+    public int longestConsecutive(int[] num) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        /* O(n) required, so think about Hash, which provides O(1) */
+        /* step1: put everything into a hash table <num, index>*/
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int maxLen = 0;
+        int len = 1;
+        for(int i = 0; i < num.length; i++){
+            map.put(num[i],i);
+        }
+        /* iterate the num, keep searching num[i] - 1, track the length */
+        boolean[] rec = new boolean[num.length];//track visited ele
+        for(int j = 0; j < num.length; j++){
+            if(!rec[j]){
+                len = 1;
+                rec[j] = true;
+                int pre = num[j] - 1;
+                while(map.containsKey(pre)){
+                    int index = map.get(pre);
+                    rec[index] = true;
+                    len++;
+                    pre--;
+                }
+                int next = num[j] + 1;
+                while(map.containsKey(next)){
+                    int index = map.get(next);
+                    rec[index] = true;
+                    len++;
+                    next++;
+                }
+            }
+            if(len > maxLen){
+                maxLen = len;
+            }
+        }
+        return maxLen;
+    }
+}
