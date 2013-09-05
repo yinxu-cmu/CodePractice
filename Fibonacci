@@ -17,6 +17,7 @@ int fib(int n) {
        b = c;
        i++;
   }
+  return a;
 }
 
 /* lg(n) 
