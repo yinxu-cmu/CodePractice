@@ -1,0 +1,50 @@
+/* salesforce cathy */
+public class CircularListInsertion {
+	
+	public static void main(String[] args) {
+		ListNode a = new ListNode(1);
+		ListNode b = new ListNode(3);
+		ListNode c = new ListNode(5);
+		ListNode d = new ListNode(9);
+		a.next = b;
+		b.next = c;
+		c.next = d;
+		d.next = a;
+		
+		insert(a, 0);
+		ListNode cur = a;
+		if (cur == null) {
+			return;
+		}
+		//ListNode tmp = null;
+		do {
+			System.out.println(cur.val);
+			cur = cur.next;
+		} while (cur != a);
+		
+	}
+	
+	public static void insert(ListNode head, int x) {
+		ListNode cur = head;
+		if (head == null) {
+			return;
+		} else {
+			//ListNode next = cur.next;
+			//gen pre node
+			ListNode pre = null;
+			while (cur.next != head) {
+				cur = cur.next;
+			}
+			pre = cur;
+			cur = cur.next;
+			while (cur.val < x && cur != head) {
+				pre = cur;
+				cur = cur.next;
+			}
+			//insert
+			ListNode n = new ListNode(x);
+			n.next = cur;
+			pre.next = n;
+		}
+	}
+}
