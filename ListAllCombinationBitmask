@@ -1,11 +1,13 @@
 public static void main(String[] args) {
-		int[] array = {1,2,3};
+		String in = "abcd";
+		char[] array = in.toCharArray();
+		//int[] array = {1,2,3,4};
 		int len = array.length;
 		int max = 1 << len;
-		boolean[] bitmask = new boolean[3];
+		boolean[] bitmask = new boolean[len];
 		for (int i = 0; i < max; i++) {
 			System.out.print("{");
-			for (int j = 0; j < 3; j++) {
+			for (int j = 0; j < len; j++) {
 				bitmask[j] = ((1 << j) & i) != 0;
 			}
 			//print
